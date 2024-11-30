@@ -1,20 +1,5 @@
-import { useState } from "react"
-export default function UserInput() {
-    const [playerInput, setPlayerInput] = useState({
-        initialInvestment: 0,
-        annualInterestRate: 0,
-        expectedReturn: 0,
-        duration: 0
+export default function UserInput({ onChange, userInput}) {
 
-    });
-    const handleUserInput = (identefire, newUserInput) => {
-        setPlayerInput((prevState) => {
-            return {
-                ...prevState,
-                [identefire]: newUserInput
-            }
-        })
-    }
 
     return (
         <section id="user-input" >
@@ -23,16 +8,16 @@ export default function UserInput() {
                     <label htmlFor="investment">Initial Investment</label>
                     <input
                         type="number" id="investment"
-                        value={playerInput.initialInvestment}
-                        required onChange={(e) => handleUserInput('initialInvestment', e.target.value)} />
+                        value={userInput.initialInvestment}
+                        required onChange={(e) => onChange('initialInvestment', e.target.value)} />
                 </p>
                 <p>
                     <label htmlFor="rate">Annual Interest Rate (%)</label>
                     <input type="number" 
                     id="rate" 
                     required 
-                    value={playerInput.annualInterestRate}
-                    onChange={(e) => handleUserInput('annualInterestRate', e.target.value)} />
+                    value={userInput.annualInterestRate}
+                    onChange={(e) => onChange('annualInterestRate', e.target.value)} />
                 </p>
             </div>
             <div className="input-group">
@@ -41,16 +26,16 @@ export default function UserInput() {
                     <input type="number" 
                     id="return" 
                     required 
-                    value={playerInput.expectedReturn}
-                    onChange={(e) => handleUserInput('expectedReturn', e.target.value)} />
+                    value={userInput.expectedReturn}
+                    onChange={(e) => onChange('expectedReturn', e.target.value)} />
                 </p>
                 <p>
                     <label htmlFor="duration">Dutation</label>
                     <input type="number" 
                     id="duration" 
                     required 
-                    value={playerInput.duration}
-                    onChange={(e) => handleUserInput('duration', e.target.value)} />
+                    value={userInput.duration}
+                    onChange={(e) => onChange('duration', e.target.value)} />
                 </p>
             </div>
 
