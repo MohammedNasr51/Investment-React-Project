@@ -4,24 +4,25 @@ import UserInput from "./components/UserInput"
 
 function App() {
   const [userInput, setUserInput] = useState({
-    initialInvestment: 0,
-    annualInterestRate: 0,
-    expectedReturn: 0,
-    duration: 0
+    initialInvestment: 10000,
+    annualInterestRate: 1200,
+    expectedReturn: 6,
+    duration: 10
 
   });
   const handleUserInput = (identefire, newUserInput) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        [identefire]: newUserInput
+        [identefire]: +newUserInput // +newUserInput converts the string to a number
       }
     })
   }
+  const isValidInput = userInput.duration >= 1;
   return (
     <>
       <UserInput onChange={handleUserInput} userInput={userInput} />
-      <Results input={userInput} />
+      {isValidInput ? <Results input={userInput} /> : <p className="center">Please enter duration greater than zero.</p>}
     </>
   )
 }
